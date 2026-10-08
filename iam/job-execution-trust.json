@@ -1,0 +1,13 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "InitialEMRContainersTrust",
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "emr-containers.amazonaws.com"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}

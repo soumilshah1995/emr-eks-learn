@@ -1,0 +1,40 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: emr-eks-lab
+  region: us-east-1
+  version: "1.31"
+
+# Replace with your account's default VPC / public subnet IDs before create.
+vpc:
+  id: vpc-XXXXXXXXXXXXXXXXX
+  subnets:
+    public:
+      us-east-1a:
+        id: subnet-XXXXXXXXXXXXXXXXX
+      us-east-1b:
+        id: subnet-YYYYYYYYYYYYYYYYY
+  clusterEndpoints:
+    publicAccess: true
+    privateAccess: false
+
+accessConfig:
+  authenticationMode: API_AND_CONFIG_MAP
+
+iam:
+  withOIDC: true
+
+managedNodeGroups:
+  - name: emr-workers
+    instanceType: m5.xlarge
+    desiredCapacity: 1
+    minSize: 1
+    maxSize: 1
+    volumeSize: 20
+    privateNetworking: false
+    labels:
+      workload: emr
+    tags:
+      Project: emr-on-eks-lab
+      Environment: lab

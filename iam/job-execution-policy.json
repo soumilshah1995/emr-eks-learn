@@ -1,0 +1,49 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "ReadEMRSamples",
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetObject",
+        "s3:ListBucket"
+      ],
+      "Resource": [
+        "arn:aws:s3:::us-east-1.elasticmapreduce",
+        "arn:aws:s3:::us-east-1.elasticmapreduce/*"
+      ]
+    },
+    {
+      "Sid": "UseLabBucket",
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetObject",
+        "s3:PutObject",
+        "s3:DeleteObject",
+        "s3:ListBucket"
+      ],
+      "Resource": [
+        "arn:aws:s3:::emr-on-eks-lab-XXXXXXXXXXXX",
+        "arn:aws:s3:::emr-on-eks-lab-XXXXXXXXXXXX/*"
+      ]
+    },
+    {
+      "Sid": "DescribeCloudWatchLogs",
+      "Effect": "Allow",
+      "Action": [
+        "logs:DescribeLogGroups",
+        "logs:DescribeLogStreams"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "WriteLabLogs",
+      "Effect": "Allow",
+      "Action": [
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+      ],
+      "Resource": "arn:aws:logs:us-east-1:XXXXXXXXXXXX:log-group:/emr-on-eks/lab:*"
+    }
+  ]
+}

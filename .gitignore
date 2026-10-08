@@ -1,0 +1,11 @@
+.lab/
+notes
+my-notes
+*.pem
+*.key
+.env
+.env.*
+credentials
+.aws/
+*.jar
+iceberg-spark-runtime-*.jar
